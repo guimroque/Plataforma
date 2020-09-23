@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "arduinoc",
+    "password": "miguel2001",
+    "database": "arduinoc",
+    "host": "mysql669.umbler.com",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "arduinoc",
+    "password": "miguel2001",
+    "database": "arduinoc",
+    "host": "mysql669.umbler.com",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "arduinoc",
+    "password": "miguel2001",
+    "database": "arduinoc",
+    "host": "mysql669.umbler.com",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}
