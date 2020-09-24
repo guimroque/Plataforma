@@ -1,5 +1,6 @@
 var Database = require("../models/index");
 const jwt = require('jsonwebtoken');
+const {Op} = require('sequelize')
 const authConfig = require('../config/auth.json')
 
 class UserService{
@@ -276,6 +277,50 @@ async findEquipe(equipe){
         }catch(err){
             console.log(err)
             return
+        }
+    }
+    async filterDino(filter) {
+        try {
+            var dinoFilter = []
+            dinoFilter = await this.dinossauro.findAll({
+                where: {
+                    nome: { [Op.like]: filter + '%' }
+                }
+            })
+
+            return dinoFilter;
+        } catch (err) {
+            return err;
+        }
+    }
+
+    async filterHuman(filter) {
+        try {
+            var humanFilter = []
+            humanFilter = await this.humano.findAll({
+                where: {
+                    nome: { [Op.like]: filter + '%' }
+                }
+            })
+
+            return humanFilter;
+        } catch (err) {
+            return err;
+        }
+    }
+
+    async filterComponent(filter) {
+        try {
+            var componentFilter = []
+            componentFilter = await this.componente.findAll({
+                where: {
+                    nome: { [Op.like]: filter + '%' }
+                }
+            })
+
+            return componentFilter;
+        } catch (err) {
+            return err;
         }
     }
     

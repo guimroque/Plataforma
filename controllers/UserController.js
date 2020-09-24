@@ -52,15 +52,28 @@ class UserController{
         }
     }
     async wiki(req, res){
-        try{
-            
-            var componente = await UserService.findComp();
-            var dino = await UserService.findDino();
-            var humano = await UserService.findHumano();
-            res.render('user/wiki', {dino:dino, componente:componente, humano:humano});
-        }catch(err){
-            console.log(err)
-            res.render('user/wiki');
+        const { filter } = req.query
+        
+        if(filter != undefined){
+
+           var dino = await UserService.filterDino(filter)
+           var component = await UserService.filterComponent(filter)
+           var human = await UserService.filterHuman(filter);
+
+           if(dino != '' || component != '' || human != ''){ 
+            res.render('user/wiki', {dino:dino, humano:human, componente:component})
+           }else{
+            var dino = await UserService.findDino()
+            var humano = await UserService.findHumano()
+            var componente = await UserService.findComp()
+            res.render('user/wiki', {dino:dino, componente:componente, humano:humano}) 
+           }
+        
+        } else {
+            var dino = await UserService.findDino()
+            var humano = await UserService.findHumano()
+            var componente = await UserService.findComp()
+            res.render('user/wiki', {dino:dino, componente:componente, humano:humano})
         }
     }
 
